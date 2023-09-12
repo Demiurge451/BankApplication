@@ -1,0 +1,8 @@
+open_account I
+check 0
+put 0 100
+get 0 60
+check 0
+close_account 0
+end
+

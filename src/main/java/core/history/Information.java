@@ -1,23 +1,23 @@
 package core.history;
 
-import core.Operation;
+import postgres.order.Order;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class Information {
+public class Information {
     private final Date date;
-    private final Operation op;
+    private final Order order;
     private final SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss");
-    protected Information(Operation op) {
-        this.op = op;
+    public Information(Order order) {
+        this.order = order;
         this.date = new Date(System.currentTimeMillis());
     }
     public String toString(){
-        return String.format("%s %s", formatter.format(date) , op.toString());
+        return String.format("%s %s", formatter.format(date) , order.toString());
     }
 
-    public Operation getOp() {
-        return op;
+    public Order getOrder() {
+        return order;
     }
 }

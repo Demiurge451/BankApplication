@@ -12,14 +12,6 @@ public class AccountHolder {
         this.name = name;
     }
 
-    public void openAccount(long id) {
-        accounts.add(new Account(this.toString(), id));
-    }
-
-    public void closeAccount(Account account) {
-        accounts.remove(account);
-    }
-
     @Override
     public String toString() {
         return name;

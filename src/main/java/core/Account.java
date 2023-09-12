@@ -8,7 +8,7 @@ public class Account {
     private long balance;
     private final AccountHolder holder;
 
-    public Account(String holder, long id) {
+    public Account(long id, String holder) {
         this.holder = new AccountHolder(holder);
         this.id = id;
     }
@@ -18,28 +18,10 @@ public class Account {
         this.id = id;
     }
 
-    public long getBalance() {
-        return balance;
-    }
-
-    public void putMoney(long sum) {
-        balance += sum;
-    }
-
-    //TODO add exception
-    public void getMoney(long sum) {
-        balance -= sum;
-    }
-
-    //TODO add exception
-    public void transfer(Account to, long sum) {
-        this.getMoney(sum);
-        to.putMoney(sum);
-    }
 
     @Override
     public String toString() {
-        return String.format("core.Account id: %d core.Account holder: %s ", id, holder.toString());
+        return String.format("Account id: %d Account holder: %s ", id, holder.toString());
     }
 
     @Override
@@ -53,5 +35,17 @@ public class Account {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getBalance() {
+        return balance;
+    }
+
+    public void setBalance(long balance) {
+        this.balance = balance;
     }
 }
