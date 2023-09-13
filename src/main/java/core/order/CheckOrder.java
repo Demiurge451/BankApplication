@@ -1,24 +1,18 @@
-package postgres.order;
+package core.order;
 
 import core.Account;
 import core.history.Logs;
-import postgres.Base;
+import postgres.order.Order;
 
 import java.util.List;
 
-public class CloseAccountOrder implements Order{
+public class CheckOrder implements Order {
     private long id;
+    private long sum;
     private final String name;
-    private Account deleteAccount;
-
-    public CloseAccountOrder(String name, List<String> data) {
+    public CheckOrder(String name, List<String> data) {
         this.name = name;
         this.id = Long.parseLong(data.get(0));
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s id: %d ", name, id);
     }
 
     @Override
@@ -28,12 +22,16 @@ public class CloseAccountOrder implements Order{
                 execute(ac);
             }
         }
-        accounts.remove(deleteAccount);
         logs.update(this);
     }
 
     @Override
     public void execute(Account account) {
-        deleteAccount = account;
+        this.sum = account.getBalance();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s id: %d sum: %d ", name, id, sum);
     }
 }

@@ -1,12 +1,13 @@
-package postgres.order;
+package core.order;
 
 import core.Account;
 import core.history.Logs;
 import postgres.Base;
+import postgres.order.Order;
 
 import java.util.List;
 
-public class PutOrder implements Order{
+public class PutOrder implements Order {
     private long id;
     private long sum;
     private String name;

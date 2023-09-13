@@ -2,9 +2,8 @@ package postgres;
 
 import core.Account;
 import core.history.Logs;
-import postgres.order.CheckOrder;
 import postgres.order.Order;
-import postgres.order.OrderFactory;
+import core.order.OrderFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,10 +15,6 @@ public class Base {
     private Logs logs = new Logs();
     private final OrderFactory orderFactory = new OrderFactory();
 
-    public Base() {
-
-    }
-
     public void update(Order or) {
         or.update(accounts, logs);
     }
@@ -27,7 +22,15 @@ public class Base {
     public void parse(String s) {
         List<String> list = Arrays.asList(s.split("\\s+"));
         Order or = orderFactory.createOrder(list.get(0), list.subList(1, list.size()));
-        or.update(accounts, logs);
+        this.update(or);
+    }
+
+    public String showBuffer() {
+        StringBuilder sb = new StringBuilder();
+        for (String s: logs.getBuffer()) {
+            sb.append(s).append("\n");
+        }
+        return sb.toString();
     }
 
     public String showLogs() {
@@ -41,9 +44,12 @@ public class Base {
         String s = in.nextLine();
         while (!s.equals("end")) {
             base.parse(s);
+            if (!base.showBuffer().equals("")) {
+                System.out.print(base.showBuffer());
+            }
             s = in.nextLine();
         }
 
-        System.out.println(base.showLogs());
+        System.out.print(base.showLogs());
     }
 }

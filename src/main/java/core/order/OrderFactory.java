@@ -1,4 +1,6 @@
-package postgres.order;
+package core.order;
+
+import postgres.order.Order;
 
 import java.util.List;
 import java.util.Map;
@@ -8,8 +10,9 @@ public class OrderFactory {
             "get", GetOrder.class,
             "put", PutOrder.class, "check", CheckOrder.class,
             "transfer", TransferOrder.class,
-            "open_account", OpenAccountOrder.class,
-            "close_account", CloseAccountOrder.class);
+            "open", OpenOrder.class,
+            "close", CloseOrder.class,
+            "show", ShowOrder.class);
 
 
     public Order createOrder(String order, List<String> data) {

@@ -1,13 +1,12 @@
-package postgres.order;
+package core.order;
 
 import core.Account;
 import core.history.Logs;
-import postgres.Base;
+import postgres.order.Order;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class TransferOrder implements Order{
+public class TransferOrder implements Order {
     private long id1;
     private long id2;
     private Account fromAccount;
@@ -44,7 +43,7 @@ public class TransferOrder implements Order{
 
     @Override
     public void execute(Account toAccount) {
-        new GetOrder(fromAccount, sum);
-        new PutOrder(toAccount, sum);
+        new GetOrder(fromAccount, sum).execute(fromAccount);
+        new PutOrder(toAccount, sum).execute(toAccount);
     }
 }

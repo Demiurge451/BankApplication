@@ -1,8 +1,22 @@
-open_account I
+open I
 check 0
 put 0 100
 get 0 60
 check 0
-close_account 0
+close 0
 end
 
+open h1
+open h2
+put 0 100
+put 1 200
+transfer 1 0 50
+check 0
+check 1
+end
+
+open h1
+open h2
+open h3
+show
+end

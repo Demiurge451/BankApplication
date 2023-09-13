@@ -1,21 +1,21 @@
-package postgres.order;
+package core.order;
 
 import core.Account;
 import core.history.Logs;
-import postgres.Base;
+import postgres.order.Order;
 
 import java.util.List;
 
-public class OpenAccountOrder implements Order{
+public class OpenOrder implements Order {
     private long id;
     private final String name;
     private String holder;
-    public OpenAccountOrder(String name, List<String> data) {
+    public OpenOrder(String name, List<String> data) {
         this.name = name;
         this.holder = data.get(0);
     }
 
-    public OpenAccountOrder(String name) {
+    public OpenOrder(String name) {
         this.name = name;
     }
 
@@ -27,8 +27,8 @@ public class OpenAccountOrder implements Order{
 
     @Override
     public void update(List<Account> accounts, Logs logs) {
-        this.id = accounts.size();
-        accounts.add(new Account(accounts.size(), holder));
+        id = logs.getGlobalId();
+        accounts.add(new Account(id, holder));
         logs.update(this);
     }
 
