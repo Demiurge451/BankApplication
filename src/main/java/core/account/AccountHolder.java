@@ -1,4 +1,4 @@
-package core;
+package core.account;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,6 +1,6 @@
 package core.order;
 
-import core.Account;
+import core.account.Account;
 import core.history.Logs;
 import postgres.order.Order;
 
@@ -19,6 +19,7 @@ public class ShowOrder implements Order {
         for (Account ac: accounts) {
             execute(ac);
         }
+        //TODO add exception
         logs.addToBuffer(buffer.toString());
         logs.update(this);
     }

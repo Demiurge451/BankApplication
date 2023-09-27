@@ -1,6 +1,6 @@
 package core.order;
 
-import core.Account;
+import core.account.Account;
 import core.history.Logs;
 import postgres.order.Order;
 
@@ -27,7 +27,7 @@ public class TransferOrder implements Order {
     }
 
     @Override
-    public void update(List<Account> accounts, Logs logs) {
+    public void update(List<Account> accounts, Logs logs) throws IllegalArgumentException {
         Account toAccount = null;
         for (Account ac: accounts) {
             if (ac.getId() == id1) {
@@ -43,6 +43,9 @@ public class TransferOrder implements Order {
 
     @Override
     public void execute(Account toAccount) {
+        if (fromAccount == null || toAccount == null) {
+            throw new IllegalArgumentException();
+        }
         new GetOrder(fromAccount, sum).execute(fromAccount);
         new PutOrder(toAccount, sum).execute(toAccount);
     }

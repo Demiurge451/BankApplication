@@ -1,6 +1,6 @@
-package postgres;
+package postgres.base;
 
-import core.Account;
+import core.account.Account;
 import core.history.Logs;
 import postgres.order.Order;
 import core.order.OrderFactory;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Base {
+public class DataBase {
     private List<Account> accounts = new ArrayList<>();
     private Logs logs = new Logs();
     private final OrderFactory orderFactory = new OrderFactory();
@@ -38,18 +38,18 @@ public class Base {
     }
 
     public static void main(String[] args) {
-        Base base = new Base();
+        DataBase dataBase = new DataBase();
         Scanner in = new Scanner(System.in);
         //TODO add Exception
         String s = in.nextLine();
         while (!s.equals("end")) {
-            base.parse(s);
-            if (!base.showBuffer().equals("")) {
-                System.out.print(base.showBuffer());
+            dataBase.parse(s);
+            if (!dataBase.showBuffer().equals("")) {
+                System.out.print(dataBase.showBuffer());
             }
             s = in.nextLine();
         }
 
-        System.out.print(base.showLogs());
+        System.out.print(dataBase.showLogs());
     }
 }

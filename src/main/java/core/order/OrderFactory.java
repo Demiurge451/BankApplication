@@ -15,13 +15,12 @@ public class OrderFactory {
             "show", ShowOrder.class);
 
 
-    public Order createOrder(String order, List<String> data) {
-        //TODO add exception and explain why data.getClass doesn't work
+    public Order createOrder(String order, List<String> data) throws IllegalArgumentException{
         Class<? extends Order> cls = orders.get(order);
         try {
             return cls.getConstructor(new Class[]{order.getClass(), List.class}).newInstance(order, data);
         } catch (Exception e) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
     }
 }

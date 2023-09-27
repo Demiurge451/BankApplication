@@ -1,6 +1,6 @@
 package core.order;
 
-import core.Account;
+import core.account.Account;
 import core.history.Logs;
 import postgres.order.Order;
 
@@ -22,18 +22,22 @@ public class CloseOrder implements Order {
     }
 
     @Override
-    public void update(List<Account> accounts, Logs logs) {
+    public void update(List<Account> accounts, Logs logs) throws IllegalArgumentException {
         for (Account ac: accounts) {
             if (ac.getId() == id) {
                 execute(ac);
             }
         }
+
         accounts.remove(deleteAccount);
         logs.update(this);
     }
 
     @Override
     public void execute(Account account) {
+        if (account == null) {
+            throw new IllegalArgumentException();
+        }
         deleteAccount = account;
     }
 }

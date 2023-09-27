@@ -1,4 +1,4 @@
-package core;
+package core.account;
 
 
 import java.util.Objects;
@@ -32,9 +32,6 @@ public class Account {
         return id == account.id;
     }
 
-    public void show() {
-
-    }
     @Override
     public int hashCode() {
         return Objects.hash(id);

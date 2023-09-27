@@ -1,6 +1,6 @@
 package core.order;
 
-import core.Account;
+import core.account.Account;
 import core.history.Logs;
 import postgres.order.Order;
 
