@@ -1,11 +1,11 @@
 package postgres.order;
 
 import core.account.Account;
-import core.history.Logs;
+import core.history.Information;
+import postgres.base.DataBase;
 
 import java.util.List;
 
 public interface Order {
-    void update(List<Account> accounts, Logs logs) throws IllegalArgumentException;
-    void execute(Account account);
+    void update(DataBase db) throws IllegalArgumentException;
 }

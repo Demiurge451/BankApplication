@@ -1,7 +1,8 @@
 package core.order;
 
 import core.account.Account;
-import core.history.Logs;
+import core.history.Information;
+import postgres.base.DataBase;
 import postgres.order.Order;
 
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.List;
 public class TransferOrder implements Order {
     private long id1;
     private long id2;
-    private Account fromAccount;
     private long sum;
     private String name;
 
@@ -27,26 +27,13 @@ public class TransferOrder implements Order {
     }
 
     @Override
-    public void update(List<Account> accounts, Logs logs) throws IllegalArgumentException {
-        Account toAccount = null;
-        for (Account ac: accounts) {
-            if (ac.getId() == id1) {
-                fromAccount = ac;
-            }
-            if (ac.getId() == id2) {
-                toAccount = ac;
-            }
-        }
-        execute(toAccount);
-        logs.update(this);
-    }
-
-    @Override
-    public void execute(Account toAccount) {
+    public void update(DataBase db) throws IllegalArgumentException {
+        Account fromAccount = db.get(id1);
+        Account toAccount = db.get(id2);
         if (fromAccount == null || toAccount == null) {
             throw new IllegalArgumentException();
         }
-        new GetOrder(fromAccount, sum).execute(fromAccount);
-        new PutOrder(toAccount, sum).execute(toAccount);
+        new GetOrder(fromAccount, sum).update(db);
+        new PutOrder(toAccount, sum).update(db);
     }
 }

@@ -1,7 +1,7 @@
 package core.order;
 
 import core.account.Account;
-import core.history.Logs;
+import postgres.base.DataBase;
 import postgres.order.Order;
 
 import java.util.List;
@@ -21,19 +21,12 @@ public class OpenOrder implements Order {
 
     @Override
     public String toString() {
-
         return String.format("%s id: %d holder: %s ", name, id, holder);
     }
 
     @Override
-    public void update(List<Account> accounts, Logs logs) {
-        id = logs.getGlobalId();
-        accounts.add(new Account(id, holder));
-        logs.update(this);
-    }
-
-    @Override
-    public void execute(Account account) {
-
+    public void update(DataBase db) {
+        id = db.getGlobalId();
+        db.put(new Account(id, holder));
     }
 }

@@ -37,6 +37,10 @@ public class Account {
         return Objects.hash(id);
     }
 
+    public AccountHolder getHolder() {
+        return holder;
+    }
+
     public long getId() {
         return id;
     }

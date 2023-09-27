@@ -12,6 +12,14 @@ public class AccountHolder {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void add(Account account) {
+        accounts.add(account);
+    }
+
     @Override
     public String toString() {
         return name;

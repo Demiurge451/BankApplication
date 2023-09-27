@@ -1,7 +1,8 @@
 package core.order;
 
 import core.account.Account;
-import core.history.Logs;
+import core.history.Information;
+import postgres.base.DataBase;
 import postgres.order.Order;
 
 import java.util.List;
@@ -29,17 +30,8 @@ public class PutOrder implements Order {
     }
 
     @Override
-    public void update(List<Account> accounts, Logs logs) throws IllegalArgumentException{
-        for (Account ac: accounts) {
-            if (ac.getId() == id) {
-                execute(ac);
-            }
-        }
-        logs.update(this);
-    }
-
-    @Override
-    public void execute(Account account) {
+    public void update(DataBase db) throws IllegalArgumentException{
+        Account account = db.get(id);
         if (account == null) {
             throw new IllegalArgumentException();
         }
