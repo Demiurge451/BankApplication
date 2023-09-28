@@ -1,20 +1,23 @@
 package core.account;
 
 
+import postgres.account.Account;
+import postgres.account.AccountHolder;
+
 import java.util.Objects;
 
-public class Account {
+public class AccountImpl implements Account {
     private final long id;
     private long balance;
     private final AccountHolder holder;
 
-    public Account(long id, String holder) {
-        this.holder = new AccountHolder(holder);
+    public AccountImpl(long id, String holder) {
+        this.holder = new AccountHolderImpl(holder);
         this.id = id;
     }
-    public Account(String holder, String balance, long id) {
+    public AccountImpl(String holder, String balance, long id) {
         this.balance = Long.parseLong(balance);
-        this.holder = new AccountHolder(holder);
+        this.holder = new AccountHolderImpl(holder);
         this.id = id;
     }
 
@@ -28,8 +31,8 @@ public class Account {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Account account = (Account) o;
-        return id == account.id;
+        AccountImpl accountImp = (AccountImpl) o;
+        return id == accountImp.id;
     }
 
     @Override

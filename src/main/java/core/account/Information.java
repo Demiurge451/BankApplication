@@ -1,4 +1,4 @@
-package core.history;
+package core.account;
 
 import postgres.order.Order;
 

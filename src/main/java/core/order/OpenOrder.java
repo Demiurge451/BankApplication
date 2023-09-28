@@ -1,6 +1,6 @@
 package core.order;
 
-import core.account.Account;
+import core.account.AccountImpl;
 import postgres.base.DataBase;
 import postgres.order.Order;
 
@@ -27,6 +27,6 @@ public class OpenOrder implements Order {
     @Override
     public void update(DataBase db) {
         id = db.getGlobalId();
-        db.put(new Account(id, holder));
+        db.put(new AccountImpl(id, holder));
     }
 }

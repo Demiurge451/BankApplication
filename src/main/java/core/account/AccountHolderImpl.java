@@ -1,14 +1,17 @@
 package core.account;
 
+import postgres.account.Account;
+import postgres.account.AccountHolder;
+
 import java.util.HashSet;
 import java.util.Set;
 
-public class AccountHolder {
+public class AccountHolderImpl implements AccountHolder {
     private final String name;
 
     private final Set<Account> accounts = new HashSet<>();
 
-    public AccountHolder(String name) {
+    public AccountHolderImpl(String name) {
         this.name = name;
     }
 

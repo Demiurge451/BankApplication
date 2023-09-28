@@ -11,7 +11,7 @@ public class Application {
         Writer wr = new Writer(new PrintWriter(System.out));
         DataBase db = new DataBase();
         Scanner in = new Scanner(System.in);
-        //TODO add Exception catcher
+        // TODO add Exception catcher
         String s = in.nextLine();
         while (!s.equals("end")) {
             db.parse(s);

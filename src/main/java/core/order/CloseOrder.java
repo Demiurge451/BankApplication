@@ -1,6 +1,6 @@
 package core.order;
 
-import core.account.Account;
+import postgres.account.Account;
 import postgres.base.DataBase;
 import postgres.order.Order;
 

@@ -1,6 +1,6 @@
 package core.order;
 
-import core.account.Account;
+import postgres.account.Account;
 import postgres.base.DataBase;
 import postgres.order.Order;
 
@@ -21,7 +21,7 @@ public class GetOrder implements Order {
 
     public GetOrder(Account ac, long sum) {
         this.name = Objects.requireNonNull(Stream.of(OrderEnum.values())
-                .filter(orderEn -> orderEn.getOrderClass() == this.getClass())
+                .filter(en -> en.getOrderClass() == this.getClass())
                 .findAny().orElse(null)).getName();
         this.id = ac.getId();
         this.sum = sum;

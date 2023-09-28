@@ -1,8 +1,9 @@
 package postgres.base;
 
-import core.account.Account;
-import core.account.AccountHolder;
-import core.history.Information;
+import core.account.AccountHolderImpl;
+import core.account.Information;
+import postgres.account.Account;
+import postgres.account.AccountHolder;
 import postgres.order.Order;
 import core.order.OrderFactory;
 
@@ -51,7 +52,7 @@ public class DataBase {
         if (h != null) {
             h.add(account);
         } else {
-            accountHolders.add(new AccountHolder(account.getHolder().getName()));
+            accountHolders.add(new AccountHolderImpl(account.getHolder().getName()));
         }
         accounts.add(account);
     }
@@ -65,6 +66,7 @@ public class DataBase {
     }
 
     public void showAccounts() {
+        // TODO refactor
         for (Account ac: accounts) {
             System.out.println(ac);
         }
