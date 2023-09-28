@@ -5,13 +5,8 @@ import core.account.AccountHolder;
 import core.history.Information;
 import postgres.order.Order;
 import core.order.OrderFactory;
-import utils.Writer;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class DataBase {
     private long globalId;
@@ -41,24 +36,14 @@ public class DataBase {
         return list;
     }
 
-    public Account get(long id) {
-        for (Account account: accounts) {
-            if (account.getId() == id) {
-                return account;
-            }
-        }
-        //TODO add exception
-        return null;
+    public Account get(long id) throws NullPointerException{
+        return accounts.stream().filter(ac -> ac.getId() == id)
+                .findAny().orElse(null);
     }
 
-    public AccountHolder get(String name) {
-        for (AccountHolder h: accountHolders) {
-            if (h.getName().equals(name)) {
-                return h;
-            }
-        }
-        //TODO add exception
-        return null;
+    public AccountHolder get(String name) throws NullPointerException{
+        return accountHolders.stream().filter(hol -> hol.getName().equals(name))
+                .findAny().orElse(null);
     }
 
     public void put(Account account) {
@@ -83,19 +68,5 @@ public class DataBase {
         for (Account ac: accounts) {
             System.out.println(ac);
         }
-    }
-
-    public static void main(String[] args) {
-        Writer wr = new Writer(new PrintWriter(System.out));
-        DataBase db = new DataBase();
-        Scanner in = new Scanner(System.in);
-        //TODO add Exception
-        String s = in.nextLine();
-        while (!s.equals("end")) {
-            db.parse(s);
-            s = in.nextLine();
-        }
-
-        wr.print(db.getLogs());
     }
 }

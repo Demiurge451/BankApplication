@@ -6,7 +6,7 @@ import java.util.Set;
 public class AccountHolder {
     private final String name;
 
-    private Set<Account> accounts = new HashSet<>();
+    private final Set<Account> accounts = new HashSet<>();
 
     public AccountHolder(String name) {
         this.name = name;
@@ -23,5 +23,9 @@ public class AccountHolder {
     @Override
     public String toString() {
         return name;
+    }
+
+    public Set<Account> getAccounts() {
+        return accounts;
     }
 }

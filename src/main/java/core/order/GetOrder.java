@@ -5,6 +5,8 @@ import postgres.base.DataBase;
 import postgres.order.Order;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 public class GetOrder implements Order {
     private final long id;
@@ -18,7 +20,9 @@ public class GetOrder implements Order {
     }
 
     public GetOrder(Account ac, long sum) {
-        this.name = "get";
+        this.name = Objects.requireNonNull(Stream.of(OrderEnum.values())
+                .filter(orderEn -> orderEn.getOrderClass() == this.getClass())
+                .findAny().orElse(null)).getName();
         this.id = ac.getId();
         this.sum = sum;
     }

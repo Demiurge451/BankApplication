@@ -1,16 +1,15 @@
 package core.order;
 
 import core.account.Account;
-import core.history.Information;
 import postgres.base.DataBase;
 import postgres.order.Order;
 
 import java.util.List;
 
 public class PutOrder implements Order {
-    private long id;
-    private long sum;
-    private String name;
+    private final long id;
+    private final long sum;
+    private final String name;
 
     public PutOrder(String name, List<String> data) {
         this.name = name;

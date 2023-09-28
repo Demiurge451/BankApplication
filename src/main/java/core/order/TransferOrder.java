@@ -1,17 +1,16 @@
 package core.order;
 
 import core.account.Account;
-import core.history.Information;
 import postgres.base.DataBase;
 import postgres.order.Order;
 
 import java.util.List;
 
 public class TransferOrder implements Order {
-    private long id1;
-    private long id2;
-    private long sum;
-    private String name;
+    private final long id1;
+    private final long id2;
+    private final long sum;
+    private final String name;
 
     public TransferOrder(String name, List<String> data) {
         this.name = name;

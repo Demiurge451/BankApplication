@@ -1,11 +1,7 @@
 package core.order;
 
-import core.account.Account;
-import core.history.Information;
 import postgres.base.DataBase;
 import postgres.order.Order;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShowOrder implements Order {
