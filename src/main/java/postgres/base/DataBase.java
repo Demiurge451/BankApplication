@@ -1,9 +1,10 @@
 package postgres.base;
 
 import core.account.AccountHolderImpl;
-import core.account.Information;
+import core.account.InformationImpl;
 import postgres.account.Account;
 import postgres.account.AccountHolder;
+import postgres.account.Information;
 import postgres.order.Order;
 import core.order.OrderFactory;
 
@@ -16,8 +17,8 @@ public class DataBase {
     private final List<AccountHolder> accountHolders = new ArrayList<>();
     private final OrderFactory orderFactory = new OrderFactory();
 
-    public void update(Order or) {
-        logs.add(new Information(or));
+    public void update(Order or) throws IllegalArgumentException{
+        logs.add(new InformationImpl(or));
         or.update(this);
         globalId++;
     }
