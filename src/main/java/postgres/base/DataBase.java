@@ -67,7 +67,6 @@ public class DataBase {
     }
 
     public void showAccounts() {
-        // TODO refactor
         for (Account ac: accounts) {
             System.out.println(ac);
         }
